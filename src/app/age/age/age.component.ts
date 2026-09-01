@@ -32,6 +32,14 @@ export class AgeComponent implements OnInit {
   result = signal<AgeCategoryResult | null>(null);
   error = signal<string | null>(null);
 
+  onInput(): void {
+    if (this.age.invalid || !this.age.value) {
+      this.result.set(null);
+    } else {
+      this.submit();
+    }
+  }
+
   submit(): void {
 
     if (this.age.invalid) {
