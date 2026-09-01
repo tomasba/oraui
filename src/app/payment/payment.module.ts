@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaymentListComponent } from './payment-list/payment-list.component';
+import {MatTableModule} from "@angular/material/table";
 
 
 
@@ -9,7 +10,8 @@ import { PaymentListComponent } from './payment-list/payment-list.component';
     PaymentListComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatTableModule
   ]
 })
 export class PaymentModule { }

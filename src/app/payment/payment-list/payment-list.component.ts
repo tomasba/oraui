@@ -9,6 +9,7 @@ import {InvoicePaymentSummary} from "../../models/invoice-payment-summary";
 })
 export class PaymentListComponent implements OnInit {
 
+  displayedColumns: string[] = ['invoiceId', 'invoiceDate'];
   unpaidPayments: InvoicePaymentSummary[] = [];
 
   constructor(private paymentService: PaymentService) { }

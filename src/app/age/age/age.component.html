@@ -1,0 +1,75 @@
+<div class="container">
+
+  <h2>Age Category</h2>
+
+  <!--  <div>-->
+  <!--    <input type="number" #ageInput value="30" />-->
+  <!--    <button (click)="loadAgeCategory(+ageInput.value)">Get category</button>-->
+  <!--  </div>-->
+
+
+  <!--  <table class="example-full-width" cellspacing="5">-->
+  <!--    <tr>-->
+  <!--      <td>-->
+  <!--        <mat-form-field class="example-form-field">-->
+  <!--          <mat-label>Age</mat-label>-->
+  <!--          <input matInput type="text" [(ngModel)]="ageValue">-->
+  <!--        </mat-form-field>-->
+  <!--      </td>-->
+  <!--      <td>-->
+  <!--        <mat-label>Value</mat-label>-->
+  <!--&lt;!&ndash;        <mat-form-field class="example-full-width">&ndash;&gt;-->
+  <!--&lt;!&ndash;          <mat-label>Long Last Name That Will Be Truncated</mat-label>&ndash;&gt;-->
+  <!--&lt;!&ndash;          <input matInput>&ndash;&gt;-->
+  <!--&lt;!&ndash;        </mat-form-field>&ndash;&gt;-->
+  <!--      </td>-->
+  <!--    </tr>-->
+  <!--  </table>-->
+
+
+<!--  <form (ngSubmit)="submit()">-->
+
+  <form>
+    <div class="row">
+
+      <div class="input-column">
+        <mat-form-field appearance="outline">
+          <mat-label>Age</mat-label>
+          <input
+            matInput
+            type="number"
+            inputmode="numeric"
+            min="0"
+            max="150"
+            step="1"
+            [formControl]="age"
+            required
+            (blur)="submit()"
+            (keydown.enter)="submit()"
+          />
+          <!--        <mat-hint>Enter a whole number between 0 and 150</mat-hint>-->
+
+          <ng-container *ngIf="age.invalid">
+            <mat-error *ngIf="age.hasError('required')">Age is required</mat-error>
+            <mat-error *ngIf="age.hasError('pattern')">
+              Only whole numbers are allowed
+            </mat-error>
+            <mat-error *ngIf="age.hasError('min')">Age must be at least 0</mat-error>
+            <mat-error *ngIf="age.hasError('max')">Age must be at most 150</mat-error>
+          </ng-container>
+        </mat-form-field>
+
+
+<!--        <button-->
+<!--          mat-raised-button color="primary" type="submit"-->
+<!--          [disabled]="age.invalid">Get category-->
+<!--        </button>-->
+      </div>
+
+      <span *ngIf="result()">{{ result()!.categoryDisplayValue }}</span>
+
+    </div>
+
+  </form>
+
+</div>
