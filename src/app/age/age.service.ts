@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { environment } from "../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import { Observable } from "rxjs";
-import { InvoicePaymentSummary } from "../models/invoice-payment-summary";
 import {AgeCategoryResult} from "../models/age-category-result";
 
 @Injectable({
@@ -11,8 +10,6 @@ import {AgeCategoryResult} from "../models/age-category-result";
 export class AgeService {
 
   private apiUrl = environment.apiUrl + '/api/age-category';
-
-  private ageDefaultValue: number = 0;
 
   constructor(private http: HttpClient) { }
 

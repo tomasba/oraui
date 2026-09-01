@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AgeComponent } from './age/age.component';
 import { MatInputModule } from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from '@angular/material/button';
-import {MatGridListModule} from "@angular/material/grid-list";
 
 
 @NgModule({
@@ -16,10 +14,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
     CommonModule,
     MatInputModule,
     FormsModule,
-    MatIconModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatGridListModule
+    MatButtonModule
   ]
 })
 export class AgeModule { }
