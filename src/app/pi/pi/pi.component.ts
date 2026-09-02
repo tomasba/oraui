@@ -1,9 +1,8 @@
 import {Component, OnInit, signal} from '@angular/core';
 import {PiBbpIterationResult} from "../../models/pi-bbp-iteration-result";
 import {PiService} from "../pi.service";
-import {FormControl, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
-import {PiBbpIterationDto} from "../../models/pi-bbp-iteration-dto";
 
 @Component({
   selector: 'app-pi',
@@ -12,6 +11,7 @@ import {PiBbpIterationDto} from "../../models/pi-bbp-iteration-dto";
 })
 export class PiComponent implements OnInit {
 
+  newPrecision = signal<number | null>(null);
   result = signal<PiBbpIterationResult | null>(null);
   error = signal<string | null>(null);
 
@@ -23,21 +23,36 @@ export class PiComponent implements OnInit {
   ngOnInit(): void {
     this.piService.findLastPiCalculation().subscribe(piResult => {
       this.result.set(piResult);
-
     });
   }
 
   readonly pi = new FormControl<number | null>(null, {
     validators: [
-      Validators.required,
       Validators.min(1),
       Validators.max(30),
       Validators.pattern(/^\d+$/),
     ],
   });
 
+  readonly form = new FormGroup({
+    pi: this.pi,
+  });
 
-  onCalculate(): void {
+  // onInput(): void {
+  //   if (this.pi.invalid || !this.pi.value) {
+  //     this.result.set(null);
+  //   } else {
+  //     this.submit();
+  //   }
+  // }
+
+  onSubmit(): void {
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     this.error.set(null);
     this.piService.calculatePi(this.pi.value!).subscribe({
       next: (res) => this.result.set(res),
@@ -46,6 +61,7 @@ export class PiComponent implements OnInit {
         this.error.set(err.error?.message ?? `Request failed (${err.status})`);
       },
     });
+
   }
 
 }

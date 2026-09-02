@@ -1,7 +1,43 @@
 <div class="container">
-  <h2>PI value calculation</h2>
+  <h2>PI calculation</h2>
+
+  <div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+
+        <div class="input-column">
+          <mat-form-field appearance="outline">
+            <mat-label>Precision</mat-label>
+            <input
+              matInput
+              type="number"
+              inputmode="numeric"
+              min="1"
+              max="30"
+              step="1"
+              [formControl]="pi"
+            />
+
+<!--            <mat-hint>Enter a whole number between 1 and 30</mat-hint>-->
+
+            <ng-container *ngIf="pi.invalid">
+              <mat-error *ngIf="pi.hasError('pattern')">
+                Only whole numbers are allowed
+              </mat-error>
+              <mat-error *ngIf="pi.hasError('min')">Precision must be at least 1</mat-error>
+              <mat-error *ngIf="pi.hasError('max')">Precision must be at most 30</mat-error>
+            </ng-container>
+          </mat-form-field>
+        </div>
+
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
 
   <div *ngIf="this.result()">
+    <h3>PI last calculation iterations</h3>
+
     <table mat-table [dataSource]="this.result()!.iterations" class="mat-elevation-z8">
       <ng-container matColumnDef="iteration">
         <th mat-header-cell *matHeaderCellDef>Iteration</th>
@@ -17,7 +53,9 @@
       </ng-container>
       <ng-container matColumnDef="runningSum">
         <th mat-header-cell *matHeaderCellDef>Running PI</th>
-        <td mat-cell *matCellDef="let pi">{{ pi.runningSum }}</td>
+        <td mat-cell *matCellDef="let pi" [class.final-pi-value]="pi.isFinal">
+          {{ pi.runningSum }}
+        </td>
       </ng-container>
       <ng-container matColumnDef="isFinal">
         <th mat-header-cell *matHeaderCellDef>Final</th>
