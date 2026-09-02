@@ -1,1 +1,32 @@
-<p>pi works!</p>
+<div class="container">
+  <h2>PI value calculation</h2>
+
+  <div *ngIf="this.result()">
+    <table mat-table [dataSource]="this.result()!.iterations" class="mat-elevation-z8">
+      <ng-container matColumnDef="iteration">
+        <th mat-header-cell *matHeaderCellDef>Iteration</th>
+        <td mat-cell *matCellDef="let pi">{{ pi.iteration }}</td>
+      </ng-container>
+      <ng-container matColumnDef="termValue">
+        <th mat-header-cell *matHeaderCellDef>Term Value</th>
+        <td mat-cell *matCellDef="let pi">{{ pi.termValue }}</td>
+      </ng-container>
+      <ng-container matColumnDef="scaledTerm">
+        <th mat-header-cell *matHeaderCellDef>Scaled Term</th>
+        <td mat-cell *matCellDef="let pi">{{ pi.scaledTerm }}</td>
+      </ng-container>
+      <ng-container matColumnDef="runningSum">
+        <th mat-header-cell *matHeaderCellDef>Running PI</th>
+        <td mat-cell *matCellDef="let pi">{{ pi.runningSum }}</td>
+      </ng-container>
+      <ng-container matColumnDef="isFinal">
+        <th mat-header-cell *matHeaderCellDef>Final</th>
+        <td mat-cell *matCellDef="let pi">{{ pi.isFinal }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+</div>
