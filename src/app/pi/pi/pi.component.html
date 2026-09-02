@@ -18,7 +18,7 @@
               [formControl]="pi"
             />
 
-<!--            <mat-hint>Enter a whole number between 1 and 30</mat-hint>-->
+            <!--            <mat-hint>Enter a whole number between 1 and 30</mat-hint>-->
 
             <ng-container *ngIf="pi.invalid">
               <mat-error *ngIf="pi.hasError('pattern')">
@@ -30,7 +30,7 @@
           </mat-form-field>
         </div>
 
-        <button mat-raised-button color="primary" type="submit">Submit</button>
+        <button mat-raised-button color="primary" type="submit">Recalculate PI</button>
       </div>
     </form>
   </div>
