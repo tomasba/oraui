@@ -11,13 +11,10 @@ import {FormControl, Validators} from "@angular/forms";
 })
 export class AgeComponent implements OnInit {
 
-  ageValue: number = 0;
-
   constructor(private ageService: AgeService) {
   }
 
   ngOnInit(): void {
-    this.ageService
     }
 
   readonly age = new FormControl<number | null>(null, {

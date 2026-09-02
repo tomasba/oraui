@@ -24,6 +24,7 @@
           <!--            (blur)="submit()"-->
           <!--            (keydown.enter)="submit()"-->
 
+          <mat-hint>Enter a whole number between 0 and 150</mat-hint>
 
           <ng-container *ngIf="age.invalid">
             <mat-error *ngIf="age.hasError('required')">Age is required</mat-error>
